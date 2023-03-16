@@ -4,7 +4,7 @@
 
 문제 : https://school.programmers.co.kr/learn/courses/30/lessons/12906
 
-- 내 풀이
+**내 풀이**
 
 ```c++
 #include <iostream>
@@ -38,7 +38,7 @@ vector<int> solution(vector<int> arr)
 
 
 
-- 다른 풀이 v1
+**다른 풀이 v1**
 
 ```c++
 #include <vector>
@@ -67,7 +67,7 @@ vector<int> solution(vector<int> arr)
 
 
 
-- 다른 풀이 v2
+**다른 풀이 v2**
 
 ```c++
 #include <vector>
@@ -96,7 +96,7 @@ vector<int> solution(vector<int> arr)
 
 - 문제 : https://school.programmers.co.kr/learn/courses/30/lessons/42576
 
-- 내 풀이
+**내 풀이**
 
 ```c++
 #include <iostream>
