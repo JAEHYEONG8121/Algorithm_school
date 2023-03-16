@@ -23,9 +23,7 @@ vector<int> solution(vector<int> arr)
 	return answer;
 }
 '''
-		
-> ㅇ
-				       
+				   
 				       
 - 연속적으로 나오는 수는 하나만 남기고 전부 제거해야한다.
     - 1. 벡터의 원소 제거 방법
