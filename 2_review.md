@@ -36,7 +36,7 @@ vector<int> solution(vector<int> arr)
     - if) 1 1과 같이 연속된 경우가 마지막에 오는 경우 -> 첫번째 1은 if문의 뒤의 조건으로 인하여 push되지 않는다 but, 마지막 원소 차례가 오면 1이 push되므로 해결
     - if) 1 2와 같이 연속되지 않은 수가 마지막에 오는 경우 -> 첫번째 1은 if문의 뒤의 조건으로 인하여 서로 다르기 때문에 push됨 + 마지막 원소 2는 if문의 앞 조건에 의해 push되므로 해결
 
-***
+
 
 - 다른 풀이 v1
 
@@ -65,7 +65,7 @@ vector<int> solution(vector<int> arr)
 	- 그 후로는 answer에 들어있는 가장 오른쪽 원소와 입력으로 들어온 arr의 원소와 비교하여 다르다면 arr원소를 answer에 계속 삽입해나가는 방식이다.
 - 거의 같은 코드이지만 위 코드는 마지막 원소의 처리를 따로 해줄 필요없이 일관성있게 arr원소와 answer의 원소를 비교해가며 연속된 수를 제거하고 하나만 남길 수 있게 된 것이다.
 
-***
+
 
 - 다른 풀이 v2
 
@@ -89,5 +89,45 @@ vector<int> solution(vector<int> arr)
 - unique()는 원소 갯수 n에 대하여 O(n)의 시간복잡도를 갖기에 아주 효율적인 방법이다.
 - 자세한 코드 설명은 링크를 통해 알 수 있다.
 	- 출처 : https://sangwoo0727.github.io/c++/Cplus-unique/
+
+***
+
+## 2. 완주하지 못한 선수(hash)
+
+- 문제 : https://school.programmers.co.kr/learn/courses/30/lessons/42576
+
+- 내 풀이
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+string solution(vector<string> participant, vector<string> completion)
+{
+	sort(participant.begin(), participant.end());
+	sort(completion.begin(), completion.end());
+
+	int i = 0;
+	for (i; i < completion.size(); i++)
+	{
+		if (participant[i] != completion[i])
+			break;
+	}
+
+	return participant[i];
+}
+```
+
+- 참가자 벡터와 완주자 벡터의 차이는 1이라는 것이 문제의 조건이다.
+- 일단 문자열이 담긴 두 벡터를 정렬하면 알파벳 순으로 이름이 정렬될 것이다.
+	- 정렬되면 같은 이름이 paticipant에서 한 명의 이름 빼고 모두 completion벡터에 존재할 것이다.
+	- for문을 completion의 size만큼 돌리고 만약 이름이 다른 경우가 나오면 break하고 그 때의 participant에 있는 이름을 return해주면 된다.
+- 결국 두 벡터를 정렬하는 것이 핵심이라고 할 수 있다!!
+
+
+
 
 
