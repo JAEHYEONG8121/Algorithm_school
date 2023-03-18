@@ -190,6 +190,79 @@ string solution2(vector<string> participant, vector<string> completion)
 **내 풀이**
 
 ```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+bool solution(vector<string> phone_book)
+{
+	sort(phone_book.begin(), phone_book.end());
+
+	for (int i = 0; i < phone_book.size()-1; i++)
+	{
+		if (phone_book[i] == phone_book[i + 1].substr(0, phone_book[i].size()))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+```
+
+- 내 풀이의 핵심은 바로 정렬이다!
+	- string이 담겨있는 phone_book 벡터를 정렬하면 사전순으로 정렬이 된다!
+	- 즉, ["119", "97674223", "1195524421"] 이와 같은 경우, 119, 1195524421, ...순으로 정렬이 된다.
+
+- 그렇다면 이렇게 정렬된 상태에서는 벡터의 원소 앞뒤로만 비교를 해도 된다는 것이다!
+	- 정렬된 값이므로 인덱스 i와 i+1이 접두어가 존재하는 관계가 아니라면 i와 i+2는 당연히 그런 관계를 맺을 수 없다!
+	- 그리고, 비교를 할때는 앞의 원소가 사전순으로 앞서고 상대적으로 문자열의 길이도 짧을 것이므로 i+1의 원소를 substr()메서드를 이용하여 짤라서 비교해주면 된다!
+	- 비교해서 같은 경우 바로 return false를 해주면 된다!
+
+**다른 풀이**
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
+
+unordered_map<string, int> map;
+
+	for (int i = 0; i < phone_book.size(); i++)
+		map[phone_book[i]] = 1;
+
+	for (int i = 0; i < phone_book.size(); i++)
+	{
+		string phone_number = "";
+		for (int j = 0; j < phone_book[i].size(); j++)
+		{
+			phone_number += phone_book[i][j];
+			if (map[phone_number] && phone_number != phone_book[i])
+				return false;
+		}
+	}
+	return true;
+```
+
+- 위의 풀이 역시 Hash Map을 이용했다.
+- map을 만들어서 phone_book의 원소들을 넣어주었다.
+- phone_number라는 빈 문자열을 하나 만들고, for문을 돌리면서 한 글자씩 더해갔다.
+	- phone_number에 문자가 하나씩 더해지면서 map에 존재하는 문자열이 된 상태에서, phone_number가 그 당시의 for문의 인덱스에 해당하는 phone_book의 원소와 다르다면 한 번호가 다른 번호의 접두사인 경우가 있다는 의미이므로 false를 return해준것이다!
+
+***
+
+## 4. 가장 큰 수(sort)
+
+- 문제 : https://school.programmers.co.kr/learn/courses/30/lessons/42746
+
+**내 풀이**
+
+```c++
+
+
 ```
 
 
