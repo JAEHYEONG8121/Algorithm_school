@@ -134,7 +134,64 @@ string solution(vector<string> participant, vector<string> completion)
 **다른 풀이**
 
 ```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
+
+string solution2(vector<string> participant, vector<string> completion)
+{
+	string answer = "";
+	unordered_map<string, int> map;
+	
+	for (auto player : participant)
+	{
+		if (map.end() == map.find(player))
+			map.insert(make_pair(player, 1));
+		else
+			map[player]++;;
+	}
+
+	for (auto player : completion)
+		map[player]--;
+
+	for (auto player : participant)
+		if (map[player] > 0)
+		{
+			answer = player;
+			break;
+		}
+
+	return answer;
+}
 ```
+
+- 위의 코드에서는 HashMap을 만들었다. HashMap이란 Key-Value의 Pair를 관리하는 자료구조이다!
+- unordered_map<string, int> map으로 지정하면 Key는 string, Value는 integer형태로 정의하는 것이다.
+	- 이 문제에서는 Key는 participant의 이름이 되고, Value는 cnt의 의미로 integer형태로 선언해준 것이다.
+	
+- Hashing하기
+	- HashMap에 participant를 전부 추가해준다.
+	- map.insert(make_pair(player, 1)) : HashMap에 Key와 Value를 한 쌍으로 입력하는 함수이다.
+	- insert가 되어있는 player에 대해서는 map[player]++ 혹은 map[player]--로 쉽게 연산할 수 있다.
+
+- HashMap을 만들어서 각 참가자들의 cnt를 1로 설정해둔다.
+- 그리고 completion명단을 훑어서 완주한 사람의 경우 -1을 해줌으로써 완주한 player의 map의 value가 0이 되도록 한다. -> 결과적으로 value값이 그대로 1인 경우 그 사람이 완주하지 못한 유일한 한명이 되는 것이다!
+
+- unordered_map은 HashTable로 구현한 자료구조로 탐색의 시간복잡도는 O(1)이다. 이는 Binary Search Tree인 map의 시간복잡도인 O(logn)보다도 월등히 좋은 성능을 보이는 것을 알 수 있다.
+- 하지만, Key가 유사한 데이터가 많을 시 해시 충돌로 인해 성능이 떨어질 수도 있다.
+
+***
+
+## 3. 전화번호 목록(hash)
+
+- 문제 : https://school.programmers.co.kr/learn/courses/30/lessons/42577
+
+**내 풀이**
+
+```c++
+```
+
 
 
 
